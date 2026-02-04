@@ -1,0 +1,9 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Evita que se mueva la pantalla */
+  background-color: #050a19;
+}
+canvas {
+  display: block;
+}
