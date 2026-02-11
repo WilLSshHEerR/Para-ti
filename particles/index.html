@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti ❤️</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+    <div class="background-container">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div id="micro-particles-container"></div>
+    </div>
+
+    <script>
+        // Generar micro-partículas aleatorias
+        const container = document.getElementById('micro-particles-container');
+        const particleCount = 800;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('micro-particle');
+
+            // Posición aleatoria
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+
+            // Tamaño aleatorio para variedad visual
+            const size = Math.random() * 2 + 1; // 1px a 3px
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+
+            // Duración y retraso aleatorios (más rápido)
+            const duration = 2 + Math.random() * 5; // 2s a 7s
+            const delay = Math.random() * 5;
+
+            particle.style.left = `${x}%`;
+            particle.style.top = `${y}%`;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.animationDelay = `${delay}s`;
+
+            container.appendChild(particle);
+        }
+    </script>
+    <script src="sketch.js"></script>
+</body>
+
+</html>
