@@ -15,6 +15,8 @@
 html {
     overflow-x: hidden;
     width: 100%;
+    height: 100%;
+    /* Better vertical centering */
 }
 
 body {
@@ -24,6 +26,8 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     min-height: 100vh;
+    min-height: -webkit-fill-available;
+    /* Robust height on mobile */
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
@@ -122,7 +126,8 @@ header p {
     height: 2px;
     background: transparent;
     box-shadow: 1744px 122px #FFF, 134px 1321px #FFF, 92px 859px #FFF, 540px 230px #FFF, 120px 800px #FFF, 900px 100px #FFF, 400px 500px #FFF;
-    animation: animStar 50s linear infinite;
+    animation: animStar 150s linear infinite;
+    /* Slowed down from 50s */
     opacity: 0.8;
 }
 
@@ -141,7 +146,8 @@ header p {
     height: 3px;
     background: transparent;
     box-shadow: 1500px 1000px #FFF, 800px 400px #FFF, 1200px 200px #FFF, 100px 100px #FFF, 600px 600px #FFF;
-    animation: animStar 100s linear infinite;
+    animation: animStar 300s linear infinite;
+    /* Slowed down from 100s */
     opacity: 0.6;
 }
 
@@ -173,7 +179,7 @@ header p {
     height: 1px;
     background: linear-gradient(to right, rgba(0, 0, 255, 0), rgba(95, 145, 255, 1));
     filter: drop-shadow(0 0 6px rgba(105, 155, 255, 1));
-    animation: tail 2000ms ease-in-out infinite, shooting 2000ms ease-in-out infinite;
+    animation: tail 5000ms ease-in-out infinite, shooting 5000ms ease-in-out infinite;
     opacity: 0;
     transform-origin: right;
 }
@@ -187,7 +193,7 @@ header p {
     background: linear-gradient(to right, rgba(0, 0, 255, 0), rgba(95, 145, 255, 1), rgba(0, 0, 255, 0));
     transform: translateY(-50%) scaleX(1.5);
     border-radius: 100%;
-    animation: shining 2000ms ease-in-out infinite;
+    animation: shining 5000ms ease-in-out infinite;
 }
 
 .shooting-star::after {
@@ -204,39 +210,141 @@ header p {
     box-shadow: 0 0 5px #fff, 0 0 10px #fff;
 }
 
-/* Randomize positions and speed for realism */
-.shooting-star:nth-child(1) {
-    top: -100px;
-    left: 0;
-    animation-delay: 0ms;
-}
-
-.shooting-star:nth-child(2) {
-    top: -100px;
+/* Randomize positions and speed for realism - Extended to 10 stars */
+.shooting-star:nth-of-type(1) {
+    top: 10%;
     left: 20%;
-    animation-delay: 4000ms;
-    animation-duration: 3000ms;
-}
-
-.shooting-star:nth-child(3) {
-    top: -100px;
-    left: 40%;
     animation-delay: 1000ms;
-    animation-duration: 2500ms;
+    animation-duration: 4000ms;
 }
 
-.shooting-star:nth-child(4) {
-    top: -100px;
+.shooting-star:nth-of-type(2) {
+    top: 20%;
+    left: 40%;
+    animation-delay: 8000ms;
+    animation-duration: 5500ms;
+}
+
+.shooting-star:nth-of-type(3) {
+    top: -5%;
     left: 60%;
-    animation-delay: 3000ms;
-    animation-duration: 1500ms;
+    animation-delay: 15000ms;
+    animation-duration: 3500ms;
 }
 
-.shooting-star:nth-child(5) {
-    top: -100px;
+.shooting-star:nth-of-type(4) {
+    top: 15%;
     left: 80%;
-    animation-delay: 5000ms;
-    animation-duration: 3500ms;
+    animation-delay: 4000ms;
+    animation-duration: 6000ms;
+}
+
+.shooting-star:nth-of-type(5) {
+    top: 30%;
+    left: 10%;
+    animation-delay: 12000ms;
+    animation-duration: 4500ms;
+}
+
+.shooting-star:nth-of-type(6) {
+    top: 40%;
+    left: 30%;
+    animation-delay: 20000ms;
+    animation-duration: 7000ms;
+}
+
+.shooting-star:nth-of-type(7) {
+    top: 50%;
+    left: 50%;
+    animation-delay: 6000ms;
+    animation-duration: 5000ms;
+}
+
+.shooting-star:nth-of-type(8) {
+    top: 60%;
+    left: 70%;
+    animation-delay: 18000ms;
+    animation-duration: 4800ms;
+}
+
+.shooting-star:nth-of-type(9) {
+    top: 70%;
+    left: 90%;
+    animation-delay: 2000ms;
+    animation-duration: 6500ms;
+}
+
+.shooting-star:nth-of-type(10) {
+    top: 5%;
+    left: 15%;
+    animation-delay: 25000ms;
+    animation-duration: 5200ms;
+}
+
+/* Mobile Responsive Shooting Stars */
+@media (max-width: 768px) {
+    .shooting-star:nth-of-type(1) {
+        left: 5%;
+        top: 10%;
+    }
+
+    .shooting-star:nth-of-type(2) {
+        left: 10%;
+        top: 20%;
+    }
+
+    .shooting-star:nth-of-type(3) {
+        left: 15%;
+        top: 0%;
+    }
+
+    .shooting-star:nth-of-type(4) {
+        left: 20%;
+        top: 15%;
+    }
+
+    .shooting-star:nth-of-type(5) {
+        left: 25%;
+        top: 30%;
+    }
+
+    .shooting-star:nth-of-type(6) {
+        left: 10%;
+        top: 40%;
+    }
+
+    .shooting-star:nth-of-type(7) {
+        left: 5%;
+        top: 50%;
+    }
+
+    .shooting-star:nth-of-type(8) {
+        left: 15%;
+        top: 60%;
+    }
+
+    .shooting-star:nth-of-type(9) {
+        left: 20%;
+        top: 70%;
+    }
+
+    .shooting-star:nth-of-type(10) {
+        left: 5%;
+        top: 5%;
+    }
+
+    @keyframes shooting {
+        0% {
+            transform: translateX(0) translateY(0) rotate(45deg);
+            opacity: 1;
+        }
+
+        100% {
+            /* Reduced distance for mobile to keep them in view longer/controlled */
+            transform: translateX(400px) translateY(400px) rotate(45deg);
+            opacity: 0;
+        }
+    }
 }
 
 /* Animations */
@@ -340,8 +448,8 @@ header p {
 }
 
 .planet {
-    /* Fluid planet size */
-    --p-size: clamp(80px, 15vw, 150px);
+    /* Reduced min size for small mobile screens */
+    --p-size: clamp(70px, 15vw, 150px);
     width: var(--p-size);
     height: var(--p-size);
     border-radius: 50%;
@@ -390,8 +498,9 @@ header p {
 
 .planet-label {
     text-align: center;
-    max-width: 15vw;
-    min-width: 100px;
+    max-width: clamp(120px, 20vw, 200px);
+    /* More flexible max-width */
+    min-width: 80px;
 }
 
 .planet-label h3 {
