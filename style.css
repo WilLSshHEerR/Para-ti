@@ -8,6 +8,10 @@
     --hover-bg: rgba(255, 255, 255, 0.1);
 }
 
+* {
+    box-sizing: border-box;
+}
+
 html {
     overflow-x: hidden;
     width: 100%;
@@ -32,30 +36,27 @@ body {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 0 2rem;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Center horizontally and vertically */
     position: relative;
     z-index: 1;
-    overflow: hidden;
-    /* Prevent content spill */
+    /* Removed overflow: hidden to allow planets to be visible */
 }
 
 /* Solar System Layout - Fluid System */
 .solar-system {
     position: relative;
     width: 100%;
-    /* Use 100% to respect container bounds */
-    height: 70vh;
-    /* Slightly reduced height to fit better with header/footer */
+    min-height: 85vh;
+    /* Increased height for full orbit visibility */
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    /* Removed overflow: hidden to prevent clipping */
 }
 
 header {
@@ -282,17 +283,7 @@ header p {
     }
 }
 
-/* Solar System Layout - Fluid System */
-.solar-system {
-    position: relative;
-    width: 100vw;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    /* Strict clipping */
-}
+/* The previous duplicate solar-system block was here, now removed */
 
 .sun-center {
     position: absolute;
@@ -310,8 +301,8 @@ header p {
     position: absolute;
     top: 50%;
     left: 50%;
-    /* Fluid diameter based on viewport, with hard limits */
-    --orbit-size: clamp(300px, 80vw, 900px);
+    /* Reduced fluid diameter for better balance */
+    --orbit-size: clamp(280px, 70vw, 750px);
     width: var(--orbit-size);
     height: var(--orbit-size);
     border: 1px dashed rgba(255, 255, 255, 0.1);
