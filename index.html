@@ -8,13 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=7">
 </head>
 
 <body>
     <div class="background-container">
         <div class="stars"></div>
         <div class="stars2"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
+        <div class="shooting-star"></div>
         <div class="shooting-star"></div>
         <div class="shooting-star"></div>
         <div class="shooting-star"></div>
@@ -52,6 +57,70 @@
 
             container.appendChild(particle);
         }
+
+        // Magical Transition Logic
+        document.querySelectorAll('.planet-container').forEach(link => {
+            link.addEventListener('click', function (e) {
+                // Ignore if it's a locked planet
+                if (!this.getAttribute('href') || this.classList.contains('is-locked')) return;
+
+                e.preventDefault();
+                const targetUrl = this.getAttribute('href');
+
+                // Add transitioning class to the planet and body
+                this.classList.add('is-transitioning');
+                document.body.classList.add('entering-world');
+
+                // Navigate after animation (synchronized with CSS transition)
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 1200);
+            });
+        });
+
+        // Countdown Logic for Red Planet (Valentine's 2026)
+        let notificationSent = false; // Flag to prevent multiple notifications
+
+        function updateCountdown() {
+            const now = new Date();
+            // User requested: 12:00:00 AM del 14 de febrero del 2026
+            const targetDate = new Date('2026-02-14T00:00:00');
+            const diff = targetDate - now;
+
+            const planetContainer = document.querySelector('.planet-3');
+            const timerElement = document.getElementById('valentine-countdown');
+
+            if (diff <= 0) {
+                planetContainer.classList.remove('is-locked');
+                timerElement.textContent = "¡Disponible!";
+
+                // Trigger Notification only once
+                if (!notificationSent) {
+                    const phone = "TU_NUMERO_AQUI"; // Ejemplo: 34600000000
+                    const apiKey = "TU_API_KEY_AQUI";
+                    const message = encodeURIComponent("¡El Planeta Valentín en Lúmina acaba de abrirse! Míralo aquí: " + window.location.href);
+
+                    if (phone !== "TU_NUMERO_AQUI" && apiKey !== "TU_API_KEY_AQUI") {
+                        fetch(`https://api.callmebot.com/whatsapp.php?phone=${phone}&text=${message}&apikey=${apiKey}`)
+                            .then(() => console.log("Notificación automatizada enviada"))
+                            .catch(err => console.error("Error al enviar notificación:", err));
+                    }
+                    notificationSent = true;
+                }
+                return;
+            }
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // Format double digits
+            const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            timerElement.textContent = formattedTime;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
     </script>
 
     <main class="container">
@@ -64,25 +133,43 @@
             <div class="orbit-ring">
                 <!-- Planeta 1: Partículas -->
                 <a href="particles/index.html" class="planet-container planet-1">
-                    <div class="planet planet-particles">
-                        <div class="icon-overlay">✨</div>
-                    </div>
-                    <div class="planet-label">
-                        <h3>Partículas</h3>
-                        <p>Danza de luz</p>
+                    <div class="planet-content-wrapper">
+                        <div class="planet planet-particles">
+                            <div class="icon-overlay">✨</div>
+                        </div>
+                        <div class="planet-label">
+                            <h3>Partículas</h3>
+                            <p>Danza de luz</p>
+                        </div>
                     </div>
                 </a>
 
                 <!-- Placeholder: Planeta Bloqueado -->
-                <div class="planet-container planet-2">
-                    <div class="planet planet-locked">
-                        <div class="icon-overlay">🔒</div>
-                    </div>
-                    <div class="planet-label">
-                        <h3>Próximamente</h3>
-                        <p>Nuevo mundo</p>
+                <div class="planet-container planet-2 is-locked">
+                    <div class="planet-content-wrapper">
+                        <div class="planet planet-locked">
+                            <div class="icon-overlay">🔒</div>
+                        </div>
+                        <div class="planet-label">
+                            <h3>Próximamente</h3>
+                            <p>Nuevo mundo</p>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Planeta 3: San Valentín (Red) -->
+                <a href="valentine/index.html" class="planet-container planet-3 is-locked">
+                    <div class="planet-content-wrapper">
+                        <div class="planet planet-red">
+                            <div class="icon-overlay">❤️</div>
+                        </div>
+                        <div class="planet-label">
+                            <h3>Valentín</h3>
+                            <p>Abre el 14 de Feb</p>
+                            <span id="valentine-countdown" class="countdown-timer">00:00:00</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </main>

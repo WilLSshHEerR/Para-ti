@@ -1,0 +1,45 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 50%, #1b002a 0%, #0a0a19 70%, #000000 100%);
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#ui-layer {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    z-index: 10;
+    pointer-events: none;
+}
+
+h1 {
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 5px;
+    color: #ff4d6d;
+    /* Rosa neón */
+    text-shadow: 0 0 15px rgba(255, 77, 109, 0.6);
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 0.8rem;
+    pointer-events: auto;
+    transition: 0.3s;
+}
+
+.btn-back:hover {
+    color: #ff4d6d;
+}
+
+canvas {
+    display: block;
+}
